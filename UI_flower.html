@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>利萨如图形设计-UI设计</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/amazeui.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="am-topbar">
+    <div class="am-container">
+        <h1 class="am-topbar-brand">
+            <a href="#">利萨如图形</a>
+        </h1>
+
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+                data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+                class="am-icon-bars"></span></button>
+
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li><a href="index.html">普通计算</a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        UI设计范例 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li class="am-active"><a href="UI_flower.html">1.花瓣</a></li>
+                        <li class="am-disabled"><a href="#">2.更多请等待</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div id="zCanvasContainer" class="am-container">
+    <canvas id="zCanvas" width="2000" height="2000" style="border:2px solid #c3c3c3;background-color: black">
+        <p>你的浏览器不支持当前的绘画功能，请下载支持HTML5的浏览器。</p>
+        <a href="http://www.firefox.com.cn/">点击下载火狐浏览器</a>
+    </canvas>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/amazeui.min.js"></script>
+<script src="js/UI_flower.js"></script>
+</body>
+</html>

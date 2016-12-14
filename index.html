@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>利萨如图形设计-普通计算</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/amazeui.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="am-topbar">
+    <div class="am-container">
+        <h1 class="am-topbar-brand">
+            <a href="#">利萨如图形</a>
+        </h1>
+
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+                data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+                class="am-icon-bars"></span></button>
+
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li class="am-active"><a href="#">普通计算</a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        UI设计范例 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li><a href="UI_flower.html">1.花瓣</a></li>
+                        <li class="am-disabled"><a href="#">2.更多请等待</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="am-container">
+    <div class="am-u-lg-6 am-u-md-6 am-u-sm-12">
+        <label>当前信息</label>
+        <ul class="am-list am-list-static am-list-border">
+            <li>画笔X坐标：[<span id="x_point"></span>]</li>
+            <li>画笔Y坐标：[<span id="y_point"></span>]</li>
+            <li>X方向振幅：[<span id="x_a"></span>]</li>
+            <li>Y方向振幅：[<span id="y_b"></span>]</li>
+            <li>频率比：[<span id="xy_n"></span>]</li>
+            <li>相位差：[<span id="xy_w"></span>π]</li>
+        </ul>
+        <ul class="am-list am-list-static am-list-border am-list-striped">
+            <li>画布宽度：2000</li>
+            <li>画布高度：2000</li>
+            <li>画笔大小：4</li>
+            <li>画笔初始坐标：0，0（中心）</li>
+        </ul>
+    </div>
+    <div class="am-u-lg-6 am-u-md-6 am-u-sm-12">
+        <form class="am-form">
+            <fieldset>
+                <legend>设置参数</legend>
+                <div class="am-form-group">
+                    <label>X方向振幅</label>
+                    <input id="x_a_input" type="number"
+                           class="am-form-field am-radius"
+                           placeholder="X方向振幅"/>
+                </div>
+                <div class="am-form-group">
+                    <label>Y方向振幅</label>
+                    <input id="y_b_input" type="number"
+                           class="am-form-field am-radius"
+                           placeholder="Y方向振幅"/>
+                </div>
+                <div class="am-form-group am-container" style="padding: 0">
+                    <div class="am-u-lg-12 am-u-md-12 am-u-sm-12" style="padding: 0">
+                        <label>频率比</label>
+                    </div>
+                    <div class="am-u-lg-5 am-u-md-5 am-u-sm-5" style="padding: 0">
+                        <input id="xy_n_input_x" type="number"
+                               class="am-form-field am-radius"
+                               placeholder="频率比"/>
+                    </div>
+                    <div class="am-u-lg-2 am-u-md-2 am-u-sm-2" style="padding: 0;text-align: center;">
+                        <label>:</label>
+                    </div>
+                    <div class="am-u-lg-5 am-u-md-5 am-u-sm-5" style="padding: 0">
+                        <input id="xy_n_input_y" type="number"
+                               class="am-form-field am-radius"
+                               placeholder="频率比"/>
+                    </div>
+
+                </div>
+                <div class="am-form-group am-container" style="padding: 0">
+                    <div class="am-u-lg-12 am-u-md-12 am-u-sm-12" style="padding: 0">
+                        <label>相位差</label>
+                    </div>
+                    <div class="am-u-lg-8 am-u-md-8 am-u-sm-8" style="padding: 0">
+                        <div class="am-u-lg-5 am-u-md-5 am-u-sm-5" style="padding: 0">
+                            <input id="xy_w_input_x" type="number"
+                                   class="am-form-field am-radius"
+                                   placeholder="相位差"/>
+                        </div>
+                        <div class="am-u-lg-2 am-u-md-2 am-u-sm-2" style="padding: 0;text-align: center;">
+                            <label>:</label>
+                        </div>
+                        <div class="am-u-lg-5 am-u-md-5 am-u-sm-5" style="padding: 0">
+                            <input id="xy_w_input_y" type="number"
+                                   class="am-form-field am-radius"
+                                   placeholder="相位差"/>
+                        </div>
+                    </div>
+                    <div class="am-u-lg-4 am-u-md-4 am-u-sm-4" style="padding: 0;text-align: center">
+                        <label>π</label>
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <button type="button"
+                            class="am-btn am-btn-block am-btn-primary
+                             am-round" onclick="buttonStart()">开始
+                    </button>
+                </div>
+                <div class="am-form-group">
+                    <button id="clearLineButton" type="button"
+                            class="am-btn am-btn-block am-btn-warning
+                             am-round">关闭轨迹线
+                    </button>
+                </div>
+                <div class="am-form-group">
+                    <button id="coordinateButton" type="button"
+                            class="am-btn am-btn-block am-btn-loading
+                             am-round">打开坐标系
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div id="zCanvasContainer" class="am-container">
+        <canvas id="zCanvas" width="2000" height="2000" style="border:2px solid #c3c3c3;">
+            <p>你的浏览器不支持当前的绘画功能，请下载支持HTML5的浏览器。</p>
+            <a href="http://www.firefox.com.cn/">点击下载火狐浏览器</a>
+        </canvas>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/amazeui.min.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>
